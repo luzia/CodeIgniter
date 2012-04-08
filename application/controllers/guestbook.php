@@ -3,7 +3,8 @@ class Guestbook extends CI_Controller{
   
   
   public function index(){
-    echo "Hi~ Luzia!";
+    echo "Hi~ Luzia!"."<br>";
+	echo "welcome guestbook";
   }
   
   public function add($title,$comment){
