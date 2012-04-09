@@ -2,9 +2,11 @@
 class Guestbook extends CI_Controller{
   
   public function index(){
-	$this->load->view('/guestbook/view.html');
+	// $this->load->view('/guestbook/view.html');
     // echo "Hi~ Luzia!"."<br>";
 	// echo "welcome guestbook";
+	$data['data'] = $this->guestbook_model->list_data();
+	$this->load->view('/guestbook/list',$data);
   }
   
   public function __construct(){
@@ -38,17 +40,25 @@ class Guestbook extends CI_Controller{
 		'message'=>$this->input->get_post('message')
 		);
 	$this->guestbook_model->insert_data('message',$data);
-	// $data['data'] = $this->guestbook_model->list_data();
-	// $this->load->view('/guestbook/list',$data);
-	$this->load->view('/guestbook/view.html');
+	$data['data'] = $this->guestbook_model->list_data();
+	$this->load->view('/guestbook/list',$data);
+	// $this->load->view('/guestbook/view.html');
   }
   
   public function delete(){
 	$id = $this->input->get_post('id');
 	$this->guestbook_model->delete_db($id);
-	// $data['data'] = $this->guestbook_model->list_data();
-	// $this->load->view('/guestbook/list',$data);
-	$this->load->view('/guestbook/view.html');
+	$data['data'] = $this->guestbook_model->list_data();
+	$this->load->view('/guestbook/list',$data);
+	// $this->load->view('/guestbook/view.html');
+  }
+  public function delete_rows(){
+	$ck = $this->input->get_post('ck');
+	foreach($ck as $id){
+	  $this->guestbook_model->delete_db($id);
+	}
+	$data['data'] = $this->guestbook_model->list_data();
+	$this->load->view('/guestbook/list',$data);
   }
   
   public function edit(){
@@ -65,9 +75,9 @@ class Guestbook extends CI_Controller{
 		"message"=>$this->input->get_post('message') ? $this->input->get_post('message') : ""
 	);
 	$this->guestbook_model->update_db($id,$update_data);
-	// $data['data'] = $this->guestbook_model->list_data();
-	// $this->load->view('/guestbook/list',$data);
-	$this->load->view('/guestbook/view.html');
+	$data['data'] = $this->guestbook_model->list_data();
+	$this->load->view('/guestbook/list',$data);
+	// $this->load->view('/guestbook/view.html');
   }
 }
 

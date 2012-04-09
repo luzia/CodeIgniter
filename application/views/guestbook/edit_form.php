@@ -24,7 +24,7 @@
     <tr>
       <td align="center">
       <input type="hidden" name="id" value="<?php echo $data['id'];?>" />
-      <input type="submit" name="save" id="button" value="送出留言" onclick="add_message(this)" />
+      <input type="submit" name="save" id="button" value="送出留言" />
       <input type="reset" name="clear" id="clear" value="重新填寫" />
 	  </td>
     </tr>
