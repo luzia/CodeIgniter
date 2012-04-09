@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>留言版</title>
+</head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+<script type="text/javascript">
+function ck_all(){
+	$("input[name='ck[]']").each(function(){
+		$(this).attr("checked",true);
+	});
+}
+
+function add_message(){
+	$("#add_form").load("/guestbook/add");
+}
+
+function del(){
+	var cbxVehicle = new Array();
+	var row = new Array();
+	//var i = 1;
+	$('input:checkbox:checked[name="ck[]"]').each(function(i) {
+		cbxVehicle[i] = this.value;
+		row[i] = this.parentElement.parentElement.rowIndex;
+		//alert("i="+i+",ID="+cbxVehicle[i]+",row="+row[i]);
+		del_mes(cbxVehicle[i],row[i]);
+	});
+	function del_mes(id,row){
+	//alert("id="+id+",row="+row);
+		var str="id="+id;
+		$.ajax({
+			type: "POST",
+			url: "/guestbook/delete",
+			data: str,
+			success: function(){
+				document.getElementById('myTable').deleteRow(row);
+			}
+		});
+	//alert("id="+id+",row="+row);
+	}	
+}
+
+</script>
+
+<body>
+<div><input type="button" value="新增留言" onclick="add_message()" /></div>
+<div><input type="button" value="全選留言" onclick="ck_all()" /></div>
+<div><input type="button" value="刪除留言" onclick="del()" /></div>
+<div id="message_list">
+<script type="text/javascript">
+$("#message_list").load("/guestbook/lists");
+</script>
+</div>
+<div id="add_form">
+
+</div>
+
+</body>
+</html>
