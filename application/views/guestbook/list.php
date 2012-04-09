@@ -17,12 +17,23 @@ $("#ck_all").click(function(){
 	}
 });
 
+function ck_rows(){
+	var checkItem = document.getElementsByName("ck[]");
+	for(var i=0; i<checkItem.length; i++){
+		if(checkItem[i].checked == false){
+			checkItem[i].checked = true;
+		}else if(checkItem[i].checked == true){
+			checkItem[i].checked = false;
+		}
+	}
+}
+
 </script>
 </head>
 
 <body>
 <div><input type="button" value="新增留言" onclick="window.location='/guestbook/add'" /></div>
-<div><input type="button" value="全選留言" onclick="ck_all()" /></div>
+<div><input type="button" value="全選留言" onclick="ck_rows()" /></div>
 
 <form action="/guestbook/delete_rows" method="POST" >
 <div><input type="submit" value="刪除留言" /></div>
