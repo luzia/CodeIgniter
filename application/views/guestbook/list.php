@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>資料列表</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 $("#ck_all").click(function(){
 	if($("#ck_all").attr("checked")){
