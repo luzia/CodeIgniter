@@ -8,7 +8,7 @@
 <body>
 <legend>留下訊息</legend>
   <p>&nbsp;</p>
-  <form action="/guestbook/insert_db" method="POST" >
+  <form action="/guestbook/ac" method="POST" >
   <table id="addMessage" width="30%" border="1" align="center">
     <tr>
       <td>
@@ -24,6 +24,7 @@
     </tr>
     <tr>
       <td align="center">
+	  <input type="hidden" name="ac" value="add" />
       <input type="submit" name="save" id="button" value="送出留言" onclick="add_message(this)" />
       <input type="reset" name="clear" id="clear" value="重新填寫" />
 	  </td>

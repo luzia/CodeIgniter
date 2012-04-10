@@ -7,7 +7,7 @@
 
 <body>
   <p>&nbsp;</p>
-  <form action="/guestbook/edit_db" method="POST" >
+  <form action="/guestbook/ac" method="POST" >
   <table id="addMessage" width="30%" border="1" align="center">
     <tr>
       <td>
@@ -24,6 +24,7 @@
     <tr>
       <td align="center">
       <input type="hidden" name="id" value="<?php echo $data['id'];?>" />
+	  <input type="hidden" name="ac" value="edit" />
       <input type="submit" name="save" id="button" value="送出留言" />
       <input type="reset" name="clear" id="clear" value="重新填寫" />
 	  </td>

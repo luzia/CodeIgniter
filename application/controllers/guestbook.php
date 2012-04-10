@@ -22,14 +22,28 @@ class Guestbook extends CI_Controller{
 		// 'comment'=> isset($comment) ? $comment : "");
 	// $this->load->view('add_form',$data);
   // }
+  
+  public function ac(){
+	switch($this->input->get_post('ac')){
+	  case "add":
+		$this->insert_db();
+		break;
+	  case "edit":
+		$this->edit_db();
+		break;
+	  case "delete":
+		$this->delete();
+		break;
+	  default:
+		$this->lists();
+	}
+  }
+  
   public function lists(){
 	$data['data'] = $this->guestbook_model->list_data();
 	$this->load->view('/guestbook/list',$data);
   }
-  // public function view(){
-	// $this->load->view('guestbook/view.html');
-  // }
-  
+    
   public function add(){
 	$this->load->view('/guestbook/add_form');
   }
@@ -40,32 +54,28 @@ class Guestbook extends CI_Controller{
 		'message'=>$this->input->get_post('message') ? $this->input->get_post('message') : ""
 		);
 	$this->guestbook_model->insert_data('message',$data);
-	$data['data'] = $this->guestbook_model->list_data();
-	$this->load->view('/guestbook/list',$data);
-	// $this->load->view('/guestbook/view.html');
+	$this->lists();
   }
   
   public function delete(){
 	$id = $this->input->get_post('id');
 	$this->guestbook_model->delete_db($id);
-	$data['data'] = $this->guestbook_model->list_data();
-	$this->load->view('/guestbook/list',$data);
-	// $this->load->view('/guestbook/view.html');
+	$this->lists();
   }
   public function delete_rows(){
 	$ck = $this->input->get_post('ck');
-	foreach($ck as $id){
-	  $this->guestbook_model->delete_db($id);
+	if(is_array($ck)){
+	  foreach($ck as $id){
+		$this->guestbook_model->delete_db($id);
+	  }
 	}
-	$data['data'] = $this->guestbook_model->list_data();
-	$this->load->view('/guestbook/list',$data);
+	$this->lists();
   }
   
   public function edit(){
 	$id = $this->input->get_post('id');
 	$data['data'] = $this->guestbook_model->get_data($id);
 	$this->load->view('/guestbook/edit_form',$data);
-	// $this->load->view('/guestbook/view.html');
   }
   
   public function edit_db(){
@@ -75,9 +85,7 @@ class Guestbook extends CI_Controller{
 		"message"=>$this->input->get_post('message') ? $this->input->get_post('message') : ""
 	);
 	$this->guestbook_model->update_db($id,$update_data);
-	$data['data'] = $this->guestbook_model->list_data();
-	$this->load->view('/guestbook/list',$data);
-	// $this->load->view('/guestbook/view.html');
+	$this->lists();
   }
 }
 

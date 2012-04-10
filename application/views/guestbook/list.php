@@ -56,7 +56,7 @@ function ck_rows(){
 		<td><?php echo $row['id'];?></td>
 		<td><?php echo $row['name'];?></td>
 		<td><?php echo $row['message'];?></td>
-		<td><a href="/guestbook/add">新增</a> <a href="/guestbook/edit?id=<?php echo $row['id'];?>">修改</a> <a href="/guestbook/delete?id=<?php echo $row['id'];?>">刪除</a></td>
+		<td><a href="/guestbook/add">新增</a> <a href="/guestbook/edit?id=<?php echo $row['id'];?>">修改</a> <a href="/guestbook/ac?ac=delete&id=<?php echo $row['id'];?>">刪除</a></td>
 	</tr>
 	<?php 
 	}
