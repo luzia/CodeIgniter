@@ -36,8 +36,8 @@ class Guestbook extends CI_Controller{
   
   public function insert_db(){
 	$data = array(
-		'name'=>$this->input->get_post('title'),
-		'message'=>$this->input->get_post('message')
+		'name'=>$this->input->get_post('title') ? $this->input->get_post('title') : "",
+		'message'=>$this->input->get_post('message') ? $this->input->get_post('message') : ""
 		);
 	$this->guestbook_model->insert_data('message',$data);
 	$data['data'] = $this->guestbook_model->list_data();

@@ -5,7 +5,8 @@
 <title>資料列表</title>
 <script type="text/javascript" src="/assets/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-$("#ck_all").click(function(){
+$(document).ready(function(){
+	$("#ck_all").click(function(){
 	if($("#ck_all").attr("checked")){
 		$("input[name='ck[]']").each(function(){
 			$(this).attr("checked",true);
@@ -16,6 +17,8 @@ $("#ck_all").click(function(){
 		});
 	}
 });
+});
+
 
 function ck_rows(){
 	var checkItem = document.getElementsByName("ck[]");
