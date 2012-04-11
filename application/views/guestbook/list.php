@@ -5,27 +5,34 @@
 <title>資料列表</title>
 <script type="text/javascript" src="/assets/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#ck_all").click(function(){
-	if($("#ck_all").attr("checked")){
-		$("input[name='ck[]']").each(function(){
-			$(this).attr("checked",true);
-		});
-	}else{
-		$("input[name='ck[]']").each(function(){
-			$(this).attr("checked",false);
-		});
-	}
+$(document).ready(function()
+{
+	$("#ck_all").click(function()
+    {
+        if($("#ck_all").attr("checked"))
+        {
+            $("input[name='ck[]']").each(function()
+            {
+                $(this).attr("checked",true);
+            });
+        }else{
+            $("input[name='ck[]']").each(function()
+            {
+                $(this).attr("checked",false);
+            });
+        }
+    });
 });
-});
-
 
 function ck_rows(){
 	var checkItem = document.getElementsByName("ck[]");
-	for(var i=0; i<checkItem.length; i++){
-		if(checkItem[i].checked == false){
+	for(var i=0; i<checkItem.length; i++)
+    {
+		if(checkItem[i].checked == false)
+        {
 			checkItem[i].checked = true;
-		}else if(checkItem[i].checked == true){
+		}else if(checkItem[i].checked == true)
+        {
 			checkItem[i].checked = false;
 		}
 	}

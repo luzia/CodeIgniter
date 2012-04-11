@@ -6,34 +6,41 @@
 </head>
 <script type="text/javascript" src="/assets/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
-function ck_all(){
-	$("input[name='ck[]']").each(function(){
+function ck_all()
+{
+	$("input[name='ck[]']").each(function()
+    {
 		$(this).attr("checked",true);
 	});
 }
 
-function add_message(){
+function add_message()
+{
 	$("#add_form").load("/guestbook/add");
 }
 
-function del(){
+function del()
+{
 	var cbxVehicle = new Array();
 	var row = new Array();
 	//var i = 1;
-	$('input:checkbox:checked[name="ck[]"]').each(function(i) {
+	$('input:checkbox:checked[name="ck[]"]').each(function(i)
+    {
 		cbxVehicle[i] = this.value;
 		row[i] = this.parentElement.parentElement.rowIndex;
 		//alert("i="+i+",ID="+cbxVehicle[i]+",row="+row[i]);
 		del_mes(cbxVehicle[i],row[i]);
 	});
-	function del_mes(id,row){
+	function del_mes(id,row)
+    {
 	//alert("id="+id+",row="+row);
 		var str="id="+id;
 		$.ajax({
 			type: "POST",
 			url: "/guestbook/delete",
 			data: str,
-			success: function(){
+			success: function()
+            {
 				document.getElementById('myTable').deleteRow(row);
 			}
 		});
