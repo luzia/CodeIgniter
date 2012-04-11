@@ -18,7 +18,7 @@ class Guestbook extends CI_Controller{
   }
   
   // public function add($title = null,$comment = null)
-  {
+  //{
     // echo "add" . $title . $comment;
     // $data = array(
         // 'title'=> isset($title) ? $title : "",
