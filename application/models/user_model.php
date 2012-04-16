@@ -34,6 +34,11 @@ class User_model extends CI_Model{
         $this->db->delete("user");
     }
     
+    public function insert_data($data = array())
+    {
+        $this->db->insert("user", $data);
+    }
+    
 }
 
 ?>

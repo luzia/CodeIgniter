@@ -11,14 +11,14 @@ class News extends CI_Controller
     {
         // Model 建構函式
         parent::__construct();
-        $this->load->model('news_model');
+        $this->load->helper('url');
         $this->load->model('user_model');
         $this->load->model('new_model');
     }
     
     public function admin()
     {
-        $data['data'] = $this->news_model->join();
+        $data['data'] = $this->new_model->join();
         $this->load->view('/news/admin.php', $data); 
     }
     
@@ -40,7 +40,7 @@ class News extends CI_Controller
     
     public function add_news()
     {
-        $user_data['user_data'] = $this->news_model->get_db("user");
+        $user_data['user_data'] = $this->user_model->get_db();
         $this->load->view('/news/news_add.php', $user_data); 
     }
     
@@ -82,8 +82,8 @@ class News extends CI_Controller
             "user_name"=> $this->input->get_post("user_name"),
             "user_company"=> $this->input->get_post("user_company")
             );
-        $this->news_model->insert_data("user", $data);
-        $this->admin();
+        $this->user_model->insert_data($data);
+        redirect('/news/admin/', 'location');
     }
     
      public function news_insertDB()
@@ -93,8 +93,8 @@ class News extends CI_Controller
             "news_title"=> $this->input->get_post("news_title"),
             "news_message"=> $this->input->get_post("news_message")
             );
-        $this->news_model->insert_data("news", $data);
-        $this->admin();
+        $this->new_model->insert_data($data);
+        redirect('/news/admin/', 'location');
     }
     
     public function edit()
@@ -108,7 +108,7 @@ class News extends CI_Controller
                 $this->edit_news();
                 break;
             default:
-            
+                redirect('/news/admin/', 'location');
         }
     }
     
@@ -123,7 +123,7 @@ class News extends CI_Controller
                 $this->delete_news();
                 break;
             default:
-            
+                redirect('/news/admin/', 'location');
         }
     }
     
@@ -154,7 +154,7 @@ class News extends CI_Controller
             "user_company"=>$this->input->get_post("user_company")
         );
         $this->user_model->update_db($user_id, $data);
-        $this->admin();
+        redirect('/news/admin/', 'location');
     }
     
     public function news_update()
@@ -166,23 +166,22 @@ class News extends CI_Controller
             "news_message"=>$this->input->get_post("news_message")
         );
         $this->new_model->update_db($news_id, $data);
-        $this->admin();
+        redirect('/news/admin/', 'location');
     }
     
     public function delete_user()
     {
         $user_id = $this->input->get_post("user_id");
         $this->user_model->delete_data($user_id);
-        $this->admin();
+        redirect('/news/admin/', 'location');
     }
     
     public function delete_news()
     {
         $news_id = $this->input->get_post("news_id");
         $this->new_model->delete_data($news_id);
-        $this->admin();
+        redirect('/news/admin/', 'location');
     }
-    
 }
 
 ?>

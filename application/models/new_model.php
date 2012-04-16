@@ -34,6 +34,21 @@ class New_model extends CI_Model{
         $this->db->delete("news");
     }
     
+    public function insert_data($data = array())
+    {
+        $this->db->insert("news", $data);
+    }
+    
+    public function join()
+    {
+        $this->db->select('*');
+        $this->db->from('news');
+        $this->db->join('user', 'user.user_id = news.user_id', 'left');
+        $query = $this->db->get();
+        $data = $query->result_array();
+        return $data;
+    }
+    
 }
 
 ?>
